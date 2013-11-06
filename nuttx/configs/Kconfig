@@ -789,6 +789,15 @@ config ARCH_BOARD_SIM
 		This port does not support interrupts or a real timer (and hence no
 		round robin scheduler)  Otherwise, it is complete.
 
+config ARCH_BOARD_STM32F4_AERODROID
+	bool "Gumstix STM32F4-AeroDroid board"
+	depends on ARCH_CHIP_STM32F427V
+	select ARCH_HAVE_LEDS
+	select ARCH_HAVE_BUTTONS
+	select ARCH_HAVE_IRQBUTTONS
+	---help---
+		Gumstix STM32F4-AeroDroid board based on the STMicro STM32F427VIT6 MCU.
+
 config ARCH_BOARD_CUSTOM
 	bool "Custom development board"
 	---help---
@@ -881,6 +890,7 @@ config ARCH_BOARD
 	default "zp214xpa"            if ARCH_BOARD_ZP214XPA
 	default "zkit-arm-1769"       if ARCH_BOARD_ZKITARM
 	default "sim"                 if ARCH_BOARD_SIM
+	default "stm32f4aerodroid"    if ARCH_BOARD_STM32F4_AERODROID
 	default ""                    if ARCH_BOARD_CUSTOM
 
 comment "Common Board Options"
@@ -1168,4 +1178,7 @@ source "configs/zkit-arm-1769/Kconfig"
 endif
 if ARCH_BOARD_SIM
 source "configs/sim/Kconfig"
+endif
+if ARCH_BOARD_STM32F4_AERODROID
+source "configs/stm32f4aerodroid/Kconfig"
 endif
